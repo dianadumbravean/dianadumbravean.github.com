@@ -1,7 +1,7 @@
 //glogal variables
 @pageWidth: 1024px;
 
-@fontFamily: Arial Helvetica;
+@fontFamily: Helvetica Arial;
 
 @languageNavFontSize: 16px;
 @optionNavFontSize: 19px;
@@ -22,7 +22,7 @@
 @rightSideWhite: #fff;
 @rightSideGrey: #d9d9d8;
 
-@defaultThemeColor: #FF6347;
+@defaultThemeColor: #FF0000;
 
 @headerColor: @defaultThemeColor;
 
@@ -34,7 +34,11 @@
 @placeholderTextColor: #4A4245;
 
 @searchBackground: transparent;
-@searchBorder: @defaultThemeColor;
+@searchBorder: #a1a1a1;
+
+@footerColor: #fff;
+@footerBgColor: #4A4245;
+@footerBorder: @defaultThemeColor;
 
 //rounded corners related
 .RoundedShape(@radius:@defaultRadius) {
@@ -102,13 +106,22 @@ body {
   margin: 0 auto;
   font-family: @fontFamily;
   position: relative;
+  border: 1px solid #ccc;
+  -moz-box-shadow: 0 1px 10px 0 #a1a1a1;
+  -webkit-box-shadow: 0 1px 10px 0 #a1a1a1;
+  box-shadow: 0 1px 10px 0 #a1a1a1;
 }
 
 header {
-  position: static;
-  top: 0;
-  height: 7px;
-  background: @headerColor;
+  overflow: hidden;
+}
+
+footer {
+  text-align: center;
+  padding: 5px 0;
+  background: @footerBgColor;
+  color: @footerColor;
+  // border-top: 2px solid @footerBorder;
 }
 
 // section {
@@ -122,6 +135,27 @@ header {
   // text-align: center;
   // color: @fontColorWhite;
 // }
+
+#left-container {
+  float: left;
+  margin: 5px 0 0 30px;
+  font-size: 90px;
+  color: #4A4245;
+  text-shadow: #CCC 3px 0px 3px;
+  font-family: Helvetica;
+}
+
+#right-container {
+  float: right;
+  margin: 0 20px 0 0;
+}
+
+#fixed-orange-line {
+  position: static;
+  top: 0;
+  height: 7px;
+  background: @headerColor;
+}
 
 a {
   color: @aColor;  
@@ -162,7 +196,7 @@ a:visited {
 
 //option menu
 #option-menu {
-  float: left;
+  float: right;
 }
 
 #option-menu ul {
@@ -171,17 +205,22 @@ a:visited {
   float: left;
 }
 
-//search box 
+//search box
+#search-container {
+  overflow: hidden;
+  margin: 9px 15px 13px 0;
+  border-top: 1px solid #CCC;
+  padding: 13px 0 0 0;
+}
+
 #search {
   float: right;
   padding: 0 2px 0 25px;
-  border: 0px solid @searchBorder;
+  border: 1px solid @searchBorder;
   background: url('../img/search_icon.png') no-repeat 10px 9px @searchBackground;
 }
 
-.StatusUpdateTools {
-  bottom: 0;
-  right: 0;
+.status-update {
   border: 0;
   padding: 5px;
   cursor: text;
