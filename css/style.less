@@ -16,12 +16,25 @@
 
 @defaultRadius: 20px;
 
-
 @fontColorBlack: #000;
 @fontColorWhite: #fff;
 
 @rightSideWhite: #fff;
 @rightSideGrey: #d9d9d8;
+
+@defaultThemeColor: #FF6347;
+
+@headerColor: @defaultThemeColor;
+
+@aColor: #4A4245;
+@aSelectedColor: @defaultThemeColor;
+@aHoverColor: @defaultThemeColor;
+@aVisitedColor: #4A4245;
+
+@placeholderTextColor: #4A4245;
+
+@searchBackground: transparent;
+@searchBorder: @defaultThemeColor;
 
 //rounded corners related
 .RoundedShape(@radius:@defaultRadius) {
@@ -43,9 +56,10 @@
 }
 
 //linear gradient related
-.LinearGradient(@stop1:0, @color1:#ccc, @stop2:50%, @color2:#ddd, @stop3:100%, @color3:#ccc) { 
+.LinearGradient(@stop1:0, @color1:#ccc, @stop2:50%, @color2:#ddd, @stop3:100%, @color3:#ccc) {
   background-color: @color1;
-  background:    -webkit-gradient(linear, left top, left bottom, color-stop(@stop1, @color1), color-stop(@stop2, @color2), color-stop(@stop3, @color3));
+  background:    -webkit-gradient(linear, left top, left bottom, color-stop(@stop1, @color1), color-stop(@stop2, @color2),
+      color-stop(@stop3, @color3));
   background:-moz-linear-gradient(top, @color1 @stop1, @color2 @stop2, @color3 @stop3);
   background: -ms-linear-gradient(top, @color1 @stop1, @color2 @stop2, @color3 @stop3);
   background:  -o-linear-gradient(top, @color1 @stop1, @color2 @stop2, @color3 @stop3);
@@ -74,60 +88,55 @@
   .boxBorder;
 }
 
-//whiteBorder
-// .boxBorderType2 {
-  // .boxBorder(5px, @defaultBorderStyle, @defaultImgBorderColor)
-// }
-// 
-// .boxBorderType3 {
-  // .boxBorder(1px, @defaultBorderStyle, @defaultBoxBorderColor)
-// }
+::-webkit-input-placeholder {
+  color: @placeholderTextColor;
+}
+
+:-moz-placeholder {
+  color: @placeholderTextColor;
+}
 
 //general style for page elements
 body {
   width: @pageWidth;
   margin: 0 auto;
   font-family: @fontFamily;
+  position: relative;
 }
 
 header {
-  //height: 150px;
-  position: relative;
+  position: static;
+  top: 0;
+  height: 7px;
+  background: @headerColor;
 }
 
-section {
-  margin: 10px 0 10px 0;
-  position: relative;
-  //height: 490px;
-}
-
-footer {
-  height: 60px;
-  padding: 10px;
-  text-align: center;
-  color: @fontColorWhite;
-}
+// section {
+  // margin: 10px 0 10px 0;
+  // position: relative;
+// }
+// 
+// footer {
+  // height: 60px;
+  // padding: 10px;
+  // text-align: center;
+  // color: @fontColorWhite;
+// }
 
 a {
-  color: black;  
+  color: @aColor;  
 }
 
-table {
- width: 100%;
+a:selected {
+  color: @aSelectedColor;
 }
 
-table tr td {
-  border: 1px solid #000;
-  .bold;
-  height: 35px;
-  vertical-align: middle;
-  text-align: center;
-  width: 15px;
+a:hover {
+  color: @aHoverColor;
 }
 
-//clearfix - for floats and other like
-.clearfix {
-  clear: both;
+a:visited {
+  color: @aVisitedColor;
 }
 
 //horizontal menus (language and option menu and genre menu)
@@ -144,43 +153,16 @@ table tr td {
 
 .horizontal-menu ul li a {
   text-decoration: none;
-  margin: 0 5px;
+  margin: 0 15px;
 }
 
-ul li a:hover {
-  .bold;
-  //color: @darkYellow; 
-}
-
-ul li a:visited {
-  color: #000; 
-}
-
-.selected {
-  .bold;
-}
-
-//upper right language menu
-#i18n {
-  margin: 0 8px 0 0;
-  overflow: hidden;
-}
-
-#i18n ul {
-  display: block;
-  float: right;
-  font-size: @languageNavFontSize;
-}
-
-#i18n div {
-  width: 100px;
-  float: left;
-  margin: 5px 0 0 8px;
+.horizontal-menu ul li a:hover {
+  color: @aHoverColor;
 }
 
 //option menu
 #option-menu {
-  margin: 0 0 0 5px;
+  float: left;
 }
 
 #option-menu ul {
@@ -189,78 +171,38 @@ ul li a:visited {
   float: left;
 }
 
-//social menu
-#social-menu {
-  margin: 0 8px 0 0;
-}
-
-.horizontal-menu #social-menu ul li {
-  line-height: 20px;
-}
-
-#social-menu ul {
-  display: block;
-  font-size: @optionNavFontSize;
+//search box 
+#search {
   float: right;
+  padding: 0 2px 0 25px;
+  border: 0px solid @searchBorder;
+  background: url('../img/search_icon.png') no-repeat 10px 9px @searchBackground;
 }
 
-#social-menu ul li {
- 
-}
-
-#social-menu ul li img {
-  vertical-align: bottom;
-  margin: 5px 0 1px 5px;
-}
-
-//related to header
-header figure.header-user-pic img {
-  margin: 20px 0 0 25px;
-  align: left;
-}
-
-figure.header-user-pic {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.header-details {
-  text-align: center;
-  padding: 10px 20px 20px 10px;
-}
-
-.header-details .header-username{
-  height: 26px;
-  width: 500px;
-  position: absolute;
-  bottom: 15px;
-  left: 25%;
-  font-size: @userNameFontSize;
-  padding: 7px;
-}
-
-.header-details h1 {
-  color: @fontColorWhite;
-}
-
-figure.header-logo {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-}
-
-//the green menu bar
-.menu-title {
-  .bold;
-  font-size: @optionNavFontSize;
-  color: @fontColorWhite;
-  margin: -5px 0 20px 0;
-  text-align: center;
-  height: 36px;
-  padding: 16px 0 0 0;
+.StatusUpdateTools {
+  bottom: 0;
+  right: 0;
+  border: 0;
+  padding: 5px;
+  cursor: text;
+  width: 150px;
+  color: #4A4245;
+  -webkit-user-modify: read-write-plaintext-only;
+  -moz-user-modify: read-write;
+  -ms-user-modify: read-write-plaintext-only; 
+  -webkit-line-break: after-white-space;
+  -webkit-nbsp-mode: space;
+  word-wrap: break-word;
+  outline-width: 0px;
+  direction: ltr;
+  unicode-bidi: embed;
+  background: 'img/search_icon.png' no-repeat;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.selected {
+  .bold;
 }
