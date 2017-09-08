@@ -1,2 +1,1 @@
-dianadumbravean.github.com - This is my blog!
-==========================
+Welcome to my website.
